@@ -84,9 +84,14 @@
     gridContainer.innerHTML = '';
 
     // Render each project card
-    projects.forEach(project => {
+    projects.forEach((project, index) => {
       const card = createProjectCard(project);
       gridContainer.appendChild(card);
+      
+      // Add visible class with staggered delay for animation
+      setTimeout(() => {
+        card.classList.add('visible');
+      }, index * 100);
     });
   }
 
@@ -99,8 +104,12 @@
     const article = document.createElement('article');
     article.className = 'project-card reveal';
     
+    // Build the URL
+    const projectUrl = `case-study.html?project=${encodeURIComponent(project.id)}`;
+    console.log('Creating card with URL:', projectUrl); // Debug log
+    
     article.innerHTML = `
-      <a href="case-study.html?project=${project.id}" class="project-link">
+      <a href="${projectUrl}" class="project-link">
         <div class="project-image-wrapper">
           <img
             src="${project.thumbnail}"
@@ -284,7 +293,7 @@
       <div class="case-error">
         <h1>Oops!</h1>
         <p>${message}</p>
-        <a href="/#work" class="button-primary">
+        <a href="index.html#work" class="button-primary">
           <span class="btn-content">
             <span class="btn-text">Back to Work</span>
             <span class="btn-hover-text">Back to Work</span>
@@ -304,13 +313,23 @@
   window.renderProjectGrid = renderProjectGrid;
   window.renderCaseStudy = renderCaseStudy;
 
-  // Auto-init project grid on index page
-  if (document.querySelector('.project-grid')) {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', renderProjectGrid);
-    } else {
+  // Auto-init based on page type
+  function autoInit() {
+    // Index page - render project grid
+    if (document.querySelector('.project-grid')) {
       renderProjectGrid();
     }
+    // Case study page - render case study
+    if (document.querySelector('.case-study-main')) {
+      renderCaseStudy();
+    }
+  }
+
+  // Run init when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', autoInit);
+  } else {
+    autoInit();
   }
 
 })();
