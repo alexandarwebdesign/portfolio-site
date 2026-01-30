@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aleksandar Pavlov — Framer Developer & UX/UI Designer | Bulgaria</title>
+    <meta
+      name="description"
+      content="UX/UI designer and Framer developer creating websites that convert. Design to live site in 2-3 weeks. Based in Bulgaria, working globally. Get a free quote."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://aleksandarpavlov.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Aleksandar Pavlov — Framer Websites That Convert"
+    />
+    <meta
+      property="og:description"
+      content="UX/UI design and Framer development for startups and businesses. From concept to live site in 2-3 weeks."
+    />
+    <meta
+      property="og:image"
+      content="https://aleksandarpavlov.com/og-image.jpg"
+    />
+    <meta property="og:url" content="https://aleksandarpavlov.com/" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Aleksandar Pavlov — Framer Websites That Convert"
+    />
+    <meta
+      name="twitter:description"
+      content="UX/UI design and Framer development for startups and businesses. From concept to live site in 2-3 weeks."
+    />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#0066FF" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Three.js for particle effect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Aleksandar Pavlov",
+        "url": "https://aleksandarpavlov.com",
+        "jobTitle": "UX/UI Designer & Framer Developer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Sofia",
+          "addressCountry": "Bulgaria"
+        },
+        "sameAs": [
+          "https://linkedin.com/in/aleksandarpavlov",
+          "https://dribbble.com/aleksandarpavlov",
+          "https://twitter.com/aleksandarpavlov"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <header>
+      <nav class="navbar" aria-label="Primary navigation">
+        <a href="/" class="nav-logo">ALEKSANDAR PAVLOV</a>
+
+        <ul class="nav-links">
+          <li><a href="#work" class="nav-link">Work</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+        </ul>
+
+        <a href="#contact" class="button-primary nav-cta">
+          <span class="btn-content">
+            <span class="btn-text">Let's Talk →</span>
+            <span class="btn-hover-text">Let's Talk →</span>
+          </span>
+        </a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section id="hero" class="hero-section">
+        <!-- Particle Effect Background -->
+        <div id="hero-particles" class="hero-particles"></div>
+        
+        <div class="hero-content animate-in">
+          <span class="hero-eyebrow">UX/UI Designer & Framer Developer</span>
+          <h1 class="hero-title">Design that feels effortless</h1>
+          <p class="hero-subtitle">I design and build conversion-focused Framer websites for startups and businesses. From first concept to live site—all in one place.</p>
+          <a href="#contact" class="button-primary hero-cta">
+            <span class="btn-content">
+              <span class="btn-text">Start a Project</span>
+              <span class="btn-hover-text">Start a Project</span>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Work Section -->
+      <section id="work" class="work-section">
+        <div class="container">
+          <header class="section-header reveal">
+            <div class="section-header-left">
+              <h2 class="section-title">WORK</h2>
+            </div>
+            <span class="project-count">(06)</span>
+          </header>
+          
+          <div class="project-grid">
+            <!-- Project cards loaded dynamically from projects.json -->
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="about-section">
+        <div class="container">
+          <div class="about-content reveal">
+            <h2 class="section-title">ABOUT</h2>
+            <div class="about-text">
+              <p class="about-bio">
+                I'm Aleksandar—a UX/UI designer and Framer developer based in Bulgaria, working with clients worldwide.
+              </p>
+              <p class="about-bio">
+                My belief? <a href="#work" class="highlight-link">Beautiful websites perform</a> just as well as boring ones - often better.
+              </p>
+              <p class="about-bio">
+                I take projects from design to live site, combining modern aesthetics with conversion principles. No handoffs, no miscommunication. Just one person who owns the entire process.
+              </p>
+              <p class="about-bio">
+                Best with clients who trust the process and want results, not just pixels.
+              </p>
+            </div>
+            
+            <a href="#contact" class="button-primary">
+              <span class="btn-content">
+                <span class="btn-text">Work With Me</span>
+                <span class="btn-hover-text">Work With Me</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="services-section">
+        <div class="container">
+          <h2 class="section-title-display reveal">Services</h2>
+
+          <div class="services-list">
+            <article class="service-item reveal">
+              <h3 class="service-title">WEB DESIGN & UX STRATEGY</h3>
+              <p class="service-description">
+                Conversion-focused websites that balance aesthetics with business goals. Every design decision backed by research—not guesswork. Includes user flows, wireframes, and high-fidelity designs.
+              </p>
+            </article>
+
+            <article class="service-item reveal">
+              <h3 class="service-title">FRAMER DEVELOPMENT</h3>
+              <p class="service-description">
+                Pixel-perfect Framer websites with smooth animations, responsive layouts, and fast load times. I bring designs to life with clean code—no developer handoff needed.
+              </p>
+            </article>
+
+            <article class="service-item reveal">
+              <h3 class="service-title">END-TO-END SOLUTIONS</h3>
+              <p class="service-description">
+                Design + development + deployment in one package. One point of contact, faster timelines, consistent quality. Most projects go live in 2-3 weeks.
+              </p>
+            </article>
+          </div>
+
+          <div class="services-cta reveal">
+            <a href="#contact" class="button-primary">
+              <span class="btn-content">
+                <span class="btn-text">Let's work together →</span>
+                <span class="btn-hover-text">Let's work together →</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <div class="contact-grid">
+            <!-- Left Column -->
+            <div class="contact-info reveal">
+              <h2 class="contact-title">
+                <span>Let's</span>
+                <span>Work</span>
+                <span>Together</span>
+              </h2>
+              <p class="contact-subtitle">Have a project in mind? I'm currently booking</p>
+
+              <div class="contact-email">
+                <p class="email-label">Prefer Email?</p>
+                <a href="mailto:alexandar.webdesign@gmail.com" class="email-link">
+                  alexandar.webdesign@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Column - Form -->
+            <form
+              class="contact-form reveal"
+              id="contact-form"
+              action="#"
+              method="POST"
+            >
+              <div class="form-group">
+                <label for="name" class="form-label">Full name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  placeholder="Placeholder"
+                  required
+                  aria-required="true"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  placeholder="Placeholder"
+                  required
+                  aria-required="true"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="service" class="form-label"
+                  >What do you need?</label
+                >
+                <div class="select-wrapper">
+                  <select
+                    id="service"
+                    name="service"
+                    class="form-input form-select"
+                    required
+                    aria-required="true"
+                  >
+                    <option value="" disabled selected>Select Service</option>
+                    <option value="web-design">Web Design & UX Strategy</option>
+                    <option value="framer">Framer Development</option>
+                    <option value="end-to-end">End-to-End Solutions</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label"
+                  >Tell me about your project</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-input form-textarea"
+                  placeholder="Placeholder"
+                  rows="5"
+                  required
+                  aria-required="true"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="button-primary form-submit">
+                <span class="btn-content">
+                  <span class="btn-text">Send Message →</span>
+                  <span class="btn-hover-text">Send Message →</span>
+                </span>
+              </button>
+
+              <p class="form-helper">I typically respond within 24 hours</p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <p class="footer-tagline">Designing websites that convert since 2023.</p>
+            <p class="footer-location">Based in Sofia, Bulgaria · Working Worldwide</p>
+          </div>
+          
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="#work" class="footer-link">Work</a>
+            <a href="#services" class="footer-link">Services</a>
+            <a href="#about" class="footer-link">About</a>
+            <a href="#contact" class="footer-link">Contact</a>
+          </nav>
+          
+          <div class="footer-social">
+            <a href="https://linkedin.com/in/aleksandarpavlov" class="footer-social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://dribbble.com/aleksandarpavlov" class="footer-social-link" target="_blank" rel="noopener noreferrer">Dribbble</a>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            © 2026 Aleksandar Pavlov · UX/UI Designer & Framer Developer
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="projects.js"></script>
+    <script src="main.js"></script>
+    <script src="hero-particles.js"></script>
+  </body>
+</html>
