@@ -431,14 +431,10 @@ textarea:focus-visible {
     rgba(41, 48, 61, 0.1) 100%
   );
   border-radius: var(--border-radius);
+  padding: var(--card-padding);
   overflow: hidden;
   cursor: pointer;
   transition: background var(--duration-normal) var(--ease-out);
-}
-
-.project-link {
-  display: block;
-  padding: var(--card-padding);
 }
 
 .project-card:hover {
@@ -1081,19 +1077,4 @@ textarea:focus-visible {
   .footer-bottom {
     text-align: center;
   }
-}
-
-/* ==========================================================================
-   8. SCROLL REVEAL ANIMATIONS
-   ========================================================================== */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
