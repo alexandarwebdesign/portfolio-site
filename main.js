@@ -155,39 +155,75 @@
       const errors = validateForm(data);
 
       if (errors.length > 0) {
-        // Show errors (you can enhance this with proper error display)
+        // Show errors
         alert(errors.join('\n'));
         return;
       }
 
-      // Get service label from select option
-      const serviceSelect = form.querySelector('#service');
-      const serviceLabel = serviceSelect.options[serviceSelect.selectedIndex].text;
+      // Submit to Web3Forms via fetch
+      const submitBtn = form.querySelector('button[type="submit"]');
+      
+      // Store original content
+      if (!submitBtn.hasAttribute('data-original-content')) {
+        submitBtn.setAttribute('data-original-content', submitBtn.innerHTML);
+      }
+      
+      // Update UI to Loading
+      submitBtn.classList.add('loading');
+      submitBtn.innerHTML = `
+        <div class="loading-container">
+            <svg class="progress-ring" viewBox="0 0 36 36">
+                <circle class="progress-ring__circle" cx="18" cy="18" r="15.915"/>
+            </svg>
+            <span class="spinner-checkmark"></span>
+        </div>
+      `;
+      submitBtn.disabled = true;
 
-      // Build email subject and body
-      const emailTo = 'alexandar.webdesign@gmail.com';
-      const emailSubject = `Project Inquiry: ${serviceLabel}`;
-      const emailBody = `Hi Aleksandar,
+      // Minimum animation time promise
+      const minAnimationTime = new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // API request promise
+      const apiRequest = fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
 
-My name is ${data.name} and I'm interested in your ${serviceLabel} services.
-
-Project Details:
-${data.message}
-
-Looking forward to hearing from you!
-
-Best regards,
-${data.name}
-${data.email}`;
-
-      // Create mailto link and open
-      const mailtoLink = `mailto:${emailTo}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-      window.location.href = mailtoLink;
-
-      // Reset form after a short delay
-      setTimeout(() => {
-        form.reset();
-      }, 500);
+      // Wait for BOTH to complete
+      Promise.all([apiRequest, minAnimationTime])
+      .then(async ([response]) => {
+        const json = await response.json();
+        
+        if (response.status === 200) {
+          // Success
+          submitBtn.classList.remove('loading');
+          submitBtn.classList.add('success');
+          submitBtn.innerHTML = 'Thanks for applying 💙';
+          
+          // Reset form
+          form.reset();
+          
+          // Restore button after delay
+          setTimeout(() => {
+            submitBtn.classList.remove('success');
+            submitBtn.innerHTML = submitBtn.getAttribute('data-original-content');
+            submitBtn.disabled = false;
+          }, 3000);
+          
+        } else {
+          // Error handling
+          console.error(json);
+          throw new Error(json.message || 'Something went wrong');
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        alert(error.message || 'Something went wrong. Please try again.');
+        
+        submitBtn.classList.remove('loading');
+        submitBtn.innerHTML = submitBtn.getAttribute('data-original-content');
+        submitBtn.disabled = false;
+      });
     });
   }
 

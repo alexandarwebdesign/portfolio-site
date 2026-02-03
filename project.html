@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">Project — Aleksandar Pavlov</title>
+
+    <!-- Theme-Aware Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Performance: Preconnect (Earliest possible connections) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Performance: Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="data/projects.json" as="fetch" crossorigin="anonymous">
+
+    <!-- Fonts: Optimized Loading -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@300;400;500;600;700&display=swap"></noscript>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Meta Tags -->
+    <meta name="description" id="page-description" content="" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" id="page-canonical" href="https://aleksandarpavlov.netlify.app/project" />
+    <meta name="theme-color" content="#0066FF" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" id="og-title" content="UX/UI Designer & Framer Developer | Aleksandar Pavlov">
+    <meta property="og:description" id="og-description" content="I design and build conversion-focused Framer websites for startups and businesses. Get a free quote today.">
+    <meta property="og:image" id="og-image" content="https://aleksandarpavlov.netlify.app/og-image.png">
+    <meta property="og:url" id="og-url" content="https://aleksandarpavlov.netlify.app">
+    <meta property="og:site_name" content="Aleksandar Pavlov">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitter-title" content="UX/UI Designer & Framer Developer | Aleksandar Pavlov">
+    <meta name="twitter:description" id="twitter-description" content="I design and build conversion-focused Framer websites for startups and businesses. Get a free quote today.">
+    <meta name="twitter:image" id="twitter-image" content="https://aleksandarpavlov.netlify.app/og-image.png">
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json" id="schema-project">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Project Name",
+        "description": "Project Description",
+        "creator": {
+          "@type": "Person",
+          "name": "Aleksandar Pavlov"
+        },
+        "dateCreated": "2024-01-01",
+        "url": "https://aleksandarpavlov.netlify.app/work/project-name"
+      }
+    </script>
+    <script type="application/ld+json" id="schema-breadcrumb">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aleksandarpavlov.netlify.app"},
+          {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://aleksandarpavlov.netlify.app/#work"},
+          {"@type": "ListItem", "position": 3, "name": "Project Name", "item": "https://aleksandarpavlov.netlify.app/work/project-slug"}
+        ]
+      }
+    </script>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Navigation -->
+    <header>
+      <nav class="navbar" aria-label="Main navigation">
+        <a href="/" class="nav-logo">ALEKSANDAR PAVLOV</a>
+
+        <ul class="nav-links">
+          <li><a href="/#work" class="nav-link">Work</a></li>
+          <li><a href="/#services" class="nav-link">Services</a></li>
+          <li><a href="/#about" class="nav-link">About</a></li>
+        </ul>
+
+        <a href="/#contact" class="button-primary nav-cta">
+          <span class="btn-content">
+            <span class="btn-text">Let's Talk →</span>
+            <span class="btn-hover-text">Let's Talk →</span>
+          </span>
+        </a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <!-- 1. Project Hero -->
+      <section id="project-hero" class="project-hero-section">
+        <div class="container">
+          <nav aria-label="Breadcrumb" class="breadcrumb" style="margin-bottom: 24px; font-size: 14px; opacity: 0.7;">
+            <a href="/" style="color: inherit; text-decoration: none;">Home</a> &gt; 
+            <a href="/#work" style="color: inherit; text-decoration: none;">Work</a> &gt; 
+            <span aria-current="page" id="breadcrumb-project-name">Project</span>
+          </nav>
+          <div class="project-hero-content animate-in">
+            <span class="project-eyebrow" id="project-eyebrow">Category · Year</span>
+            <h1 class="project-hero-title" id="project-title">Project Title</h1>
+            <div class="project-badges">
+                <span class="conceptual-badge">Conceptual Project</span>
+            </div>
+            <p class="project-description" id="project-description">Project description goes here.</p>
+          </div>
+        </div>
+        <div class="project-hero-image-wrapper">
+          <img
+            src=""
+            alt=""
+            class="project-hero-image"
+            id="project-hero-image"
+            width="1920"
+            height="1080"
+            loading="eager" 
+          />
+        </div>
+      </section>
+
+      <!-- 2. The Brief & Persona (formerly Overview) -->
+      <section id="project-brief" class="project-brief-section">
+        <div class="container">
+           <div class="brief-grid">
+               <div class="brief-meta">
+                   <div class="meta-block">
+                       <span class="meta-label">The AI Client Persona</span>
+                       <span class="meta-value" id="project-client-persona">Client Persona Name</span>
+                   </div>
+                   <div class="meta-block">
+                       <span class="meta-label">Services</span>
+                       <div class="project-tags" id="project-tags"></div>
+                   </div>
+               </div>
+               
+               <div class="brief-content">
+                   <h2 class="project-section-title">The Challenge</h2>
+                   <div class="rich-text" id="project-brief-text"></div>
+               </div>
+           </div>
+        </div>
+      </section>
+
+      <!-- 3. The Design Concept -->
+      <section id="project-concept" class="project-concept-section">
+        <div class="container">
+           <div class="concept-content">
+               <h2 class="project-section-title">The Design Concept</h2>
+               <div class="rich-text" id="project-concept-text"></div>
+           </div>
+        </div>
+      </section>
+
+      <!-- 4. Visual Gallery -->
+      <section id="project-gallery" class="project-gallery-section" style="display: none;">
+        <div class="container">
+          <div class="project-gallery-grid" id="project-gallery-grid">
+            <!-- Gallery images will be inserted here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Project Navigation -->
+      <section id="project-navigation" class="project-navigation-section">
+        <div class="container">
+          <div class="project-nav-grid">
+            <a href="#" class="project-nav-link project-nav-prev" id="prev-project" style="visibility: hidden;">
+              <span class="project-nav-label">← Previous Project</span>
+              <span class="project-nav-title" id="prev-project-title">Project Title</span>
+            </a>
+            <a href="#" class="project-nav-link project-nav-next" id="next-project" style="visibility: hidden;">
+              <span class="project-nav-label">Next Project →</span>
+              <span class="project-nav-title" id="next-project-title">Project Title</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. CTA Section -->
+      <section id="project-cta" class="project-cta-section">
+        <div class="container">
+          <div class="project-cta-content">
+            <span class="project-cta-eyebrow">Like what you see?</span>
+            <h2 class="project-cta-title">Let's create something amazing together.</h2>
+            <a href="/#contact" class="button-primary">
+              <span class="btn-content">
+                <span class="btn-text">Start a Project</span>
+                <span class="btn-hover-text">Start a Project</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <p class="footer-tagline">Designing websites that convert since 2023.</p>
+            <p class="footer-location">Based in Sofia, Bulgaria · Working Worldwide</p>
+          </div>
+          
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="/#work" class="footer-link">Work</a>
+            <a href="/#services" class="footer-link">Services</a>
+            <a href="/#about" class="footer-link">About</a>
+            <a href="/#contact" class="footer-link">Contact</a>
+          </nav>
+          
+          <div class="footer-social">
+            <a href="https://linkedin.com/in/aleksandarpavlov" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="social-icon">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            © 2026 Aleksandar Pavlov · UX/UI Designer & Website Developer
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="main.js" defer></script>
+    <script src="projects.js" defer></script>
+  </body>
+</html>

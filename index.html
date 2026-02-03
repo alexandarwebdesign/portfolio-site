@@ -3,81 +3,92 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aleksandar Pavlov — Framer Developer & UX/UI Designer | Bulgaria</title>
-    <meta
-      name="description"
-      content="UX/UI designer and Framer developer creating websites that convert. Design to live site in 2-3 weeks. Based in Bulgaria, working globally. Get a free quote."
-    />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://aleksandarpavlov.com/" />
+    <title>UX/UI Designer & Framer Developer | Aleksandar Pavlov</title>
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="Aleksandar Pavlov — Framer Websites That Convert"
-    />
-    <meta
-      property="og:description"
-      content="UX/UI design and Framer development for startups and businesses. From concept to live site in 2-3 weeks."
-    />
-    <meta
-      property="og:image"
-      content="https://aleksandarpavlov.com/og-image.jpg"
-    />
-    <meta property="og:url" content="https://aleksandarpavlov.com/" />
+    <!-- Theme-Aware Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Aleksandar Pavlov — Framer Websites That Convert"
-    />
-    <meta
-      name="twitter:description"
-      content="UX/UI design and Framer development for startups and businesses. From concept to live site in 2-3 weeks."
-    />
+    <!-- Performance: Preconnect (Earliest possible connections) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Theme -->
-    <meta name="theme-color" content="#0066FF" />
+    <!-- Performance: Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="data/projects.json" as="fetch" crossorigin="anonymous">
+    
+    <!-- Hero Image Preload -->
+    <link rel="preload" as="image" href="images/aleksandar-pavlov-ux-designer.jpg">
 
-    <!-- Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Three.js for particle effect -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Fonts: Optimized Loading -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@300;400;500;600;700&display=swap"></noscript>
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css" />
 
+    <!-- Meta Tags -->
+    <meta name="description" content="I design and build conversion-focused Framer websites for startups and businesses. UX/UI designer based in Sofia, Bulgaria. Get a free quote today.">
+    <meta name="keywords" content="UX designer, UI designer, web designer, Framer developer, website developer, Sofia, Bulgaria">
+    <meta name="author" content="Aleksandar Pavlov">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://aleksandarpavlov.netlify.app/">
+    <meta name="theme-color" content="#0066FF" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="UX/UI Designer & Framer Developer | Aleksandar Pavlov">
+    <meta property="og:description" content="I design and build conversion-focused Framer websites for startups and businesses. Get a free quote today.">
+    <meta property="og:image" content="https://aleksandarpavlov.netlify.app/og-image.png">
+    <meta property="og:url" content="https://aleksandarpavlov.netlify.app">
+    <meta property="og:site_name" content="Aleksandar Pavlov">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UX/UI Designer & Framer Developer | Aleksandar Pavlov">
+    <meta name="twitter:description" content="I design and build conversion-focused Framer websites for startups and businesses. Get a free quote today.">
+    <meta name="twitter:image" content="https://aleksandarpavlov.netlify.app/og-image.png">
+
     <!-- Schema Markup -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Aleksandar Pavlov",
-        "url": "https://aleksandarpavlov.com",
-        "jobTitle": "UX/UI Designer & Framer Developer",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Sofia",
-          "addressCountry": "Bulgaria"
-        },
-        "sameAs": [
-          "https://linkedin.com/in/aleksandarpavlov",
-          "https://dribbble.com/aleksandarpavlov",
-          "https://twitter.com/aleksandarpavlov"
-        ]
-      }
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Aleksandar Pavlov",
+      "jobTitle": "UX/UI Designer & Website Developer",
+      "description": "I design and build conversion-focused websites for startups and businesses",
+      "url": "https://aleksandarpavlov.netlify.app",
+      "email": "alexandar.webdesign@gmail.com",
+      "image": "https://aleksandarpavlov.netlify.app/images/aleksandar-pavlov-ux-designer.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Sofia",
+        "addressCountry": "Bulgaria"
+      },
+      "sameAs": [
+        "https://linkedin.com/in/aleksandarpavlov",
+        "https://dribbble.com/aleksandarpavlov"
+      ],
+      "knowsAbout": ["UX Design", "UI Design", "Web Development", "Framer", "Web Design"]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Aleksandar Pavlov",
+      "url": "https://aleksandarpavlov.netlify.app",
+      "description": "UX/UI Designer & Website Developer based in Sofia, Bulgaria"
+    }
     </script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Navigation -->
     <header>
-      <nav class="navbar" aria-label="Primary navigation">
+      <nav class="navbar" aria-label="Main navigation">
         <a href="/" class="nav-logo">ALEKSANDAR PAVLOV</a>
 
         <ul class="nav-links">
@@ -103,9 +114,9 @@
         <div id="hero-particles" class="hero-particles"></div>
         
         <div class="hero-content animate-in">
-          <span class="hero-eyebrow">UX/UI Designer & Framer Developer</span>
-          <h1 class="hero-title">Design that feels effortless</h1>
-          <p class="hero-subtitle">I design and build conversion-focused Framer websites for startups and businesses. From first concept to live site—all in one place.</p>
+          <h1 class="hero-eyebrow">UX/UI Designer & Framer Developer</h1>
+          <h2 class="hero-title">Design that feels effortless</h2>
+          <p class="hero-subtitle">I design and build conversion-focused websites for startups and businesses. From first concept to live site - all in one place.</p>
           <a href="#contact" class="button-primary hero-cta">
             <span class="btn-content">
               <span class="btn-text">Start a Project</span>
@@ -120,155 +131,18 @@
         <div class="container">
           <header class="section-header reveal">
             <div class="section-header-left">
-              <h2 class="section-title">WORK</h2>
+              <h2 class="section-title">Work</h2>
             </div>
             <span class="project-count">(06)</span>
           </header>
           
-          <div class="project-grid">
-            <!-- Project 1: Kaito Araki -->
-            <article class="project-card reveal">
-              <div class="project-image-wrapper">
-                <img
-                  src="images/projects/kaito-araki.jpg"
-                  alt="Kaito Araki architecture portfolio website design"
-                  class="project-image"
-                  width="400"
-                  height="284"
-                  loading="lazy"
-                />
+          <div class="project-grid" id="project-grid">
+            <!-- Projects will be dynamically loaded from CMS -->
+            <noscript>
+              <div class="projects-fallback">
+                <p>Featured projects: Viva Architecture, SaaS Dashboard, E-commerce Redesign. Enable JavaScript to view interactive portfolio.</p>
               </div>
-              <div class="project-info">
-                <div class="project-title-row">
-                  <h3 class="project-title">Kaito Araki</h3>
-                  <span class="arrow-content" aria-hidden="true">
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-default" />
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-hover" />
-                  </span>
-                </div>
-                <p class="project-category">Architecture Portfolio</p>
-              </div>
-            </article>
-
-            <!-- Project 2: MotionCraft -->
-            <article class="project-card reveal">
-              <div class="project-image-wrapper">
-                <img
-                  src="images/projects/motioncraft.jpg"
-                  alt="MotionCraft creative agency Framer website"
-                  class="project-image"
-                  width="400"
-                  height="284"
-                  loading="lazy"
-                />
-              </div>
-              <div class="project-info">
-                <div class="project-title-row">
-                  <h3 class="project-title">MotionCraft</h3>
-                  <span class="arrow-content" aria-hidden="true">
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-default" />
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-hover" />
-                  </span>
-                </div>
-                <p class="project-category">Creative Agency</p>
-              </div>
-            </article>
-
-            <!-- Project 3: CoreCloud -->
-            <article class="project-card reveal">
-              <div class="project-image-wrapper">
-                <img
-                  src="images/projects/corecloud.jpg"
-                  alt="CoreCloud SaaS platform dashboard UI design"
-                  class="project-image"
-                  width="400"
-                  height="284"
-                  loading="lazy"
-                />
-              </div>
-              <div class="project-info">
-                <div class="project-title-row">
-                  <h3 class="project-title">CoreCloud</h3>
-                  <span class="arrow-content" aria-hidden="true">
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-default" />
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-hover" />
-                  </span>
-                </div>
-                <p class="project-category">SaaS Platform</p>
-              </div>
-            </article>
-
-            <!-- Project 4: Viva Architecture -->
-            <article class="project-card reveal">
-              <div class="project-image-wrapper">
-                <img
-                  src="images/projects/viva-architecture.jpg"
-                  alt="Viva Architecture real estate website design"
-                  class="project-image"
-                  width="400"
-                  height="284"
-                  loading="lazy"
-                />
-              </div>
-              <div class="project-info">
-                <div class="project-title-row">
-                  <h3 class="project-title">Viva Architecture</h3>
-                  <span class="arrow-content" aria-hidden="true">
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-default" />
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-hover" />
-                  </span>
-                </div>
-                <p class="project-category">Real Estate</p>
-              </div>
-            </article>
-
-            <!-- Project 5: Audio Product -->
-            <article class="project-card reveal">
-              <div class="project-image-wrapper">
-                <img
-                  src="images/projects/audio-product.jpg"
-                  alt="Audio Product e-commerce website Framer"
-                  class="project-image"
-                  width="400"
-                  height="284"
-                  loading="lazy"
-                />
-              </div>
-              <div class="project-info">
-                <div class="project-title-row">
-                  <h3 class="project-title">Audio Product</h3>
-                  <span class="arrow-content" aria-hidden="true">
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-default" />
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-hover" />
-                  </span>
-                </div>
-                <p class="project-category">E-commerce</p>
-              </div>
-            </article>
-
-            <!-- Project 6: Gravity Zero -->
-            <article class="project-card reveal">
-              <div class="project-image-wrapper">
-                <img
-                  src="images/projects/gravity-zero.jpg"
-                  alt="Gravity Zero brand identity and web design"
-                  class="project-image"
-                  width="400"
-                  height="284"
-                  loading="lazy"
-                />
-              </div>
-              <div class="project-info">
-                <div class="project-title-row">
-                  <h3 class="project-title">Gravity Zero</h3>
-                  <span class="arrow-content" aria-hidden="true">
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-default" />
-                    <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-hover" />
-                  </span>
-                </div>
-                <p class="project-category">Brand & Website</p> 
-              </div>
-            </article>
+            </noscript>
           </div>
         </div>
       </section>
@@ -276,29 +150,44 @@
       <!-- About Section -->
       <section id="about" class="about-section">
         <div class="container">
-          <div class="about-content reveal">
-            <h2 class="section-title">ABOUT</h2>
-            <div class="about-text">
-              <p class="about-bio">
-                I'm Aleksandar—a UX/UI designer and Framer developer based in Bulgaria, working with clients worldwide.
-              </p>
-              <p class="about-bio">
-                My belief? <a href="#work" class="highlight-link">Beautiful websites perform</a> just as well as boring ones - often better.
-              </p>
-              <p class="about-bio">
-                I take projects from design to live site, combining modern aesthetics with conversion principles. No handoffs, no miscommunication. Just one person who owns the entire process.
-              </p>
-              <p class="about-bio">
-                Best with clients who trust the process and want results, not just pixels.
-              </p>
+          <div class="about-grid reveal">
+            <div class="about-text-column">
+              <h2 class="section-title">About</h2>
+              <div class="about-text">
+                <p class="about-bio">
+                  I'm Aleksandar - a UX/UI designer and website developer based in Bulgaria, working with clients worldwide.
+                </p>
+                <p class="about-bio">
+                  My belief? <a href="#work" class="highlight-link">Beautiful websites perform</a> just as well as boring ones - often better.
+                </p>
+                <p class="about-bio">
+                  I take projects from design to live site, combining modern aesthetics with conversion principles. No handoffs, no miscommunication. Just one person who owns the entire process.
+                </p>
+                <p class="about-bio">
+                  Best with clients who trust the process and want results, not just pixels.
+                </p>
+              </div>
+              
+              <a href="#contact" class="button-primary">
+                <span class="btn-content">
+                  <span class="btn-text">Work With Me</span>
+                  <span class="btn-hover-text">Work With Me</span>
+                </span>
+              </a>
             </div>
-            
-            <a href="#contact" class="button-primary">
-              <span class="btn-content">
-                <span class="btn-text">Work With Me</span>
-                <span class="btn-hover-text">Work With Me</span>
-              </span>
-            </a>
+
+            <div class="about-image-column">
+              <div class="about-image-wrapper">
+                <img 
+                  src="images/aleksandar-pavlov-ux-designer.jpg" 
+                  alt="Aleksandar Pavlov - UX/UI Designer and Website Developer based in Sofia, Bulgaria" 
+                  class="about-image"
+                  width="800"
+                  height="1000"
+                  loading="eager"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -312,14 +201,14 @@
             <article class="service-item reveal">
               <h3 class="service-title">WEB DESIGN & UX STRATEGY</h3>
               <p class="service-description">
-                Conversion-focused websites that balance aesthetics with business goals. Every design decision backed by research—not guesswork. Includes user flows, wireframes, and high-fidelity designs.
+                Conversion - focused websites that balance aesthetics with business goals. Every design decision backed by research - not guesswork. Includes user flows, wireframes, and high-fidelity designs.
               </p>
             </article>
 
             <article class="service-item reveal">
-              <h3 class="service-title">FRAMER DEVELOPMENT</h3>
+              <h3 class="service-title">WEBSITE DEVELOPMENT</h3>
               <p class="service-description">
-                Pixel-perfect Framer websites with smooth animations, responsive layouts, and fast load times. I bring designs to life with clean code—no developer handoff needed.
+                Pixel-perfect websites with smooth animations, responsive layouts, and fast load times. I bring designs to life with clean code - no developer handoff needed.
               </p>
             </article>
 
@@ -357,7 +246,7 @@
 
               <div class="contact-email">
                 <p class="email-label">Prefer Email?</p>
-                <a href="mailto:alexandar.webdesign@gmail.com" class="email-link">
+                <a href="mailto:alexandar.webdesign@gmail.com" class="email-link" aria-label="Send email to Aleksandar">
                   alexandar.webdesign@gmail.com
                 </a>
               </div>
@@ -367,9 +256,16 @@
             <form
               class="contact-form reveal"
               id="contact-form"
-              action="#"
+              action="https://api.web3forms.com/submit"
               method="POST"
+              aria-label="Contact form"
             >
+              <!-- Web3Forms Config -->
+              <input type="hidden" name="access_key" value="6ce81dbe-3381-4f14-b653-191cd30ba5f3">
+              <input type="hidden" name="subject" value="New Project Inquiry from Portfolio">
+              <input type="hidden" name="from_name" value="Portfolio Contact Form">
+              <!-- Optional: Redirect to success page or stay on page (handled by JS) -->
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
               <div class="form-group">
                 <label for="name" class="form-label">Full name</label>
                 <input
@@ -410,7 +306,7 @@
                   >
                     <option value="" disabled selected>Select Service</option>
                     <option value="web-design">Web Design & UX Strategy</option>
-                    <option value="framer">Framer Development</option>
+                    <option value="website-dev">Website Development</option>
                     <option value="end-to-end">End-to-End Solutions</option>
                   </select>
                 </div>
@@ -462,21 +358,26 @@
           </nav>
           
           <div class="footer-social">
-            <a href="https://linkedin.com/in/aleksandarpavlov" class="footer-social-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://dribbble.com/aleksandarpavlov" class="footer-social-link" target="_blank" rel="noopener noreferrer">Dribbble</a>
+            <a href="https://linkedin.com/in/aleksandarpavlov" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="social-icon">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
           </div>
         </div>
         
         <div class="footer-bottom">
           <p class="footer-copyright">
-            © 2026 Aleksandar Pavlov · UX/UI Designer & Framer Developer
+            © 2026 Aleksandar Pavlov · UX/UI Designer & Website Developer
           </p>
         </div>
       </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="main.js"></script>
-    <script src="hero-particles.js"></script>
+    <!-- Application Scripts -->
+    <script src="main.js" defer></script>
+    <script src="projects.js" defer></script>
+    <script type="module" src="hero-particles.js"></script>
   </body>
 </html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aleksandarpavlov.netlify.app/sitemap.xml

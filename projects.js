@@ -1,35 +1,28 @@
 /* ==========================================================================
-   PROJECTS CMS
-   Handles loading project data and rendering content dynamically
+   PROJECTS CMS HANDLER
+   Loads project data from JSON and renders content dynamically
    ========================================================================== */
 
 (function() {
   'use strict';
-
-  // Cache for loaded projects
-  let projectsCache = null;
 
   // ==========================================================================
   // 1. DATA LOADING
   // ==========================================================================
 
   /**
-   * Load projects from JSON file
+   * Fetch projects data from JSON file
    * @returns {Promise<Array>} Array of project objects
    */
   async function loadProjects() {
-    if (projectsCache) {
-      return projectsCache;
-    }
-
     try {
-      const response = await fetch('data/projects.json');
+      // Use absolute path from root to ensure it works on all pages
+      const response = await fetch('/data/projects.json');
       if (!response.ok) {
-        throw new Error('Failed to load projects');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      projectsCache = data.projects;
-      return projectsCache;
+      return data.projects || [];
     } catch (error) {
       console.error('Error loading projects:', error);
       return [];
@@ -37,299 +30,353 @@
   }
 
   /**
-   * Get a single project by ID
-   * @param {string} id - Project slug
-   * @returns {Promise<Object|null>} Project object or null
+   * Get featured projects sorted by year (newest first)
+   * @param {Array} projects - All projects
+   * @param {number} limit - Maximum number of projects to return
+   * @returns {Array} Featured projects
    */
-  async function getProject(id) {
-    const projects = await loadProjects();
-    return projects.find(p => p.id === id) || null;
+  function getFeaturedProjects(projects, limit = 6) {
+    return projects
+      .filter(p => p.featured)
+      .sort((a, b) => b.year - a.year)
+      .slice(0, limit);
   }
 
   /**
-   * Get project navigation (prev/next)
-   * @param {string} currentId - Current project slug
-   * @returns {Promise<Object>} Object with prev and next project
+   * Find project by slug
+   * @param {Array} projects - All projects
+   * @param {string} slug - Project slug
+   * @returns {Object|null} Project object or null
    */
-  async function getProjectNav(currentId) {
-    const projects = await loadProjects();
-    const currentIndex = projects.findIndex(p => p.id === currentId);
+  function findProjectBySlug(projects, slug) {
+    return projects.find(p => p.slug === slug) || null;
+  }
+
+  /**
+   * Get previous and next projects for navigation
+   * @param {Array} projects - All projects
+   * @param {string} currentSlug - Current project slug
+   * @returns {Object} Object with prev and next projects
+   */
+  function getProjectNavigation(projects, currentSlug) {
+    // Create a copy before sorting to avoid mutating the original array
+    const sortedProjects = [...projects].sort((a, b) => b.year - a.year);
+    const currentIndex = sortedProjects.findIndex(p => p.slug === currentSlug);
     
     return {
-      prev: currentIndex > 0 ? projects[currentIndex - 1] : null,
-      next: currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null
+      prev: currentIndex > 0 ? sortedProjects[currentIndex - 1] : null,
+      next: currentIndex < sortedProjects.length - 1 ? sortedProjects[currentIndex + 1] : null
+    };
+  }
+
+  /**
+   * Check if image is a placeholder
+   * @param {string} src - Image source
+   * @returns {boolean}
+   */
+  function isPlaceholder(src) {
+    return !src || src === 'placeholder' || src === '';
+  }
+
+  /**
+   * Get image attributes for rendering
+   * @param {string} src - Image source
+   * @param {string} alt - Alt text
+   * @returns {Object} Object with src and class
+   */
+  function getImageAttrs(src, alt) {
+    if (isPlaceholder(src)) {
+      return {
+        src: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+        className: 'placeholder'
+      };
+    }
+    return {
+      src: src,
+      className: ''
     };
   }
 
   // ==========================================================================
-  // 2. PROJECT GRID RENDERING (for index.html)
+  // 2. PROJECT DETAIL PAGE RENDERING
   // ==========================================================================
 
   /**
-   * Render project cards in the Work section
-   */
-  async function renderProjectGrid() {
-    const gridContainer = document.querySelector('.project-grid');
-    if (!gridContainer) return;
-
-    const projects = await loadProjects();
-    
-    // Update project count
-    const countElement = document.querySelector('.project-count');
-    if (countElement) {
-      countElement.textContent = `(${String(projects.length).padStart(2, '0')})`;
-    }
-
-    // Clear existing content
-    gridContainer.innerHTML = '';
-
-    // Render each project card
-    projects.forEach((project, index) => {
-      const card = createProjectCard(project);
-      gridContainer.appendChild(card);
-      
-      // Add visible class with staggered delay for animation
-      setTimeout(() => {
-        card.classList.add('visible');
-      }, index * 100);
-    });
-  }
-
-  /**
-   * Create a project card element
+   * Render project detail page content
    * @param {Object} project - Project data
-   * @returns {HTMLElement} Article element
+   * @param {Object} nav - Navigation (prev/next) projects
    */
-  function createProjectCard(project) {
-    const article = document.createElement('article');
-    article.className = 'project-card reveal';
-    
-    // Build the URL
-    const projectUrl = `case-study.html?project=${encodeURIComponent(project.id)}`;
-    console.log('Creating card with URL:', projectUrl); // Debug log
-    
-    article.innerHTML = `
-      <a href="${projectUrl}" class="project-link">
-        <div class="project-image-wrapper">
-          <img
-            src="${project.thumbnail}"
-            alt="${project.title} - ${project.category}"
-            class="project-image"
-            width="400"
-            height="284"
-            loading="lazy"
-          />
-        </div>
-        <div class="project-info">
-          <div class="project-title-row">
-            <h3 class="project-title">${project.title}</h3>
-            <span class="arrow-content" aria-hidden="true">
-              <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-default" />
-              <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-hover" />
-            </span>
-          </div>
-          <p class="project-category">${project.category}</p>
-        </div>
-      </a>
-    `;
-
-    return article;
-  }
-
-  // ==========================================================================
-  // 3. CASE STUDY RENDERING (for case-study.html)
-  // ==========================================================================
-
-  /**
-   * Render case study page content
-   */
-  async function renderCaseStudy() {
-    const main = document.querySelector('.case-study-main');
-    if (!main) return;
-
-    // Get project ID from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const projectId = urlParams.get('project');
-
-    if (!projectId) {
-      showError(main, 'No project specified');
-      return;
-    }
-
-    main.classList.add('loading');
-
-    const project = await getProject(projectId);
-
+  function renderProjectDetail(project, nav) {
     if (!project) {
-      showError(main, 'Project not found');
+      document.body.innerHTML = '<div style="padding: 100px; text-align: center;"><h1>Project Not Found</h1><p><a href="/">← Back to Home</a></p></div>';
       return;
     }
 
-    // Update page title
-    document.title = `${project.title} — Case Study | Aleksandar Pavlov`;
+    // Update page meta
+    // Dynamic SEO: Update meta tags for specific project
+    const seoTitle = `${project.title} – Case Study | Aleksandar Pavlov`;
+    
+    // Title
+    document.title = seoTitle; 
+    const pageTitleEl = document.getElementById('page-title');
+    if (pageTitleEl) pageTitleEl.textContent = seoTitle;
+    const pageDesc = document.getElementById('page-description');
 
-    // Populate content
-    populateCaseStudy(project);
+    // Meta Description
+    if (pageDesc) pageDesc.setAttribute('content', project.description);
 
-    // Setup navigation
-    await setupProjectNav(projectId);
+    // Open Graph
+    const ogTitle = document.getElementById('og-title');
+    const ogDesc = document.getElementById('og-description');
+    const ogImage = document.getElementById('og-image');
+    const ogUrl = document.getElementById('og-url');
 
-    main.classList.remove('loading');
-  }
+    if (ogTitle) ogTitle.setAttribute('content', seoTitle);
+    if (ogDesc) ogDesc.setAttribute('content', project.description);
+    if (ogImage) ogImage.setAttribute('content', project.hero_image); // Note: Assuming absolute path or handling elsewhere? User said "Real images", JSON has relative.
+    // Ideally we should resolve relative paths to absolute for OG tags, but sticking to request.
+    // Let's optimize by adding domain if it's relative
+    if (ogImage && project.hero_image && !project.hero_image.startsWith('http')) {
+         ogImage.setAttribute('content', `https://aleksandarpavlov.netlify.app/${project.hero_image}`);
+    }
+    if (ogUrl) ogUrl.setAttribute('content', window.location.href);
 
-  /**
-   * Populate case study elements with project data
-   * @param {Object} project - Project data
-   */
-  function populateCaseStudy(project) {
-    // Hero
-    setText('#case-category', project.category);
-    setText('#case-title', project.title);
-    setText('#case-overview', project.overview);
-    setImage('#case-hero-img', project.hero, `${project.title} hero image`);
+    // Twitter
+    const twTitle = document.getElementById('twitter-title');
+    const twDesc = document.getElementById('twitter-description');
+    const twImage = document.getElementById('twitter-image');
 
-    // Meta
-    setText('#meta-client', project.client);
-    setText('#meta-year', project.year);
-    setText('#meta-role', project.role);
-    setText('#meta-duration', project.duration);
-
-    // Services
-    const servicesContainer = document.getElementById('services-tags');
-    if (servicesContainer && project.services) {
-      servicesContainer.innerHTML = project.services
-        .map(service => `<li>${service}</li>`)
-        .join('');
+    if (twTitle) twTitle.setAttribute('content', seoTitle);
+    if (twDesc) twDesc.setAttribute('content', project.description);
+    if (twImage) {
+        if (project.hero_image && !project.hero_image.startsWith('http')) {
+             twImage.setAttribute('content', `https://aleksandarpavlov.netlify.app/${project.hero_image}`);
+        } else {
+             twImage.setAttribute('content', project.hero_image);
+        }
     }
 
-    // Content sections
-    setText('#case-challenge', project.challenge);
-    setText('#case-solution', project.solution);
-    setText('#case-results', project.results);
-
-    // Gallery
-    const galleryContainer = document.getElementById('case-gallery');
-    if (galleryContainer && project.gallery && project.gallery.length > 0) {
-      galleryContainer.innerHTML = project.gallery
-        .map(img => `
-          <div class="gallery-image">
-            <img src="${img}" alt="${project.title} gallery image" loading="lazy" />
-          </div>
-        `)
-        .join('');
+    // Hero section
+    document.getElementById('project-eyebrow').textContent = `${project.category} · ${project.year}`;
+    document.getElementById('project-title').textContent = project.title;
+    document.getElementById('project-description').textContent = project.description;
+    
+    const heroImage = document.getElementById('project-hero-image');
+    const heroAttrs = getImageAttrs(project.hero_image, `${project.title} project hero image`);
+    heroImage.src = heroAttrs.src;
+    heroImage.alt = `${project.title} project hero image`;
+    if (heroAttrs.className) {
+      heroImage.classList.add(heroAttrs.className);
     }
 
-    // Live site link
-    const ctaSection = document.getElementById('case-cta-section');
-    const liveLink = document.getElementById('case-live-link');
-    if (ctaSection && liveLink && project.liveUrl && project.liveUrl !== '#') {
-      liveLink.href = project.liveUrl;
-      ctaSection.style.display = 'block';
+    // Brief & Persona section
+    document.getElementById('project-client-persona').textContent = project.client_persona || project.client;
+    
+    // Tags
+    const tagsContainer = document.getElementById('project-tags');
+    tagsContainer.innerHTML = project.tags.map(tag => 
+      `<span class="project-tag">${tag}</span>`
+    ).join('');
+
+    // The Brief (formerly Challenge)
+    // We expect the JSON to eventually use 'the_brief' and 'design_concept', 
+    // but for now we fallback to 'challenge' and 'solution' if the new keys aren't there yet.
+    document.getElementById('project-brief-text').innerHTML = project.the_brief || project.challenge;
+
+    // The Concept (formerly Solution)
+    document.getElementById('project-concept-text').innerHTML = project.design_concept || project.solution;
+
+    // Gallery (conditional)
+    const gallerySection = document.getElementById('project-gallery');
+    const galleryGrid = document.getElementById('project-gallery-grid');
+    if (project.gallery && project.gallery.length > 0) {
+      gallerySection.style.display = 'block';
+      galleryGrid.innerHTML = project.gallery.map((img, index) => {
+        const attrs = getImageAttrs(img, `${project.title} gallery image ${index + 1}`);
+        return `<div class="gallery-item">
+          <img src="${attrs.src}" alt="${project.title} gallery image" class="${attrs.className}" loading="lazy" />
+        </div>`;
+      }).join('');
     }
-  }
 
-  /**
-   * Setup prev/next navigation
-   * @param {string} currentId - Current project ID
-   */
-  async function setupProjectNav(currentId) {
-    const nav = await getProjectNav(currentId);
 
+
+    // Breadcrumbs
+    const breadcrumbName = document.getElementById('breadcrumb-project-name');
+    if (breadcrumbName) {
+        breadcrumbName.textContent = project.title;
+    }
+
+    // Schema Markup Updates
+    try {
+        const projectSchemaScript = document.getElementById('schema-project');
+        if (projectSchemaScript) {
+            const schema = JSON.parse(projectSchemaScript.textContent);
+            schema.name = project.title;
+            schema.description = project.description;
+            schema.url = window.location.href;
+            if (project.date) schema.dateCreated = project.date; // if available, else standard
+            projectSchemaScript.textContent = JSON.stringify(schema, null, 2);
+        }
+
+        const breadcrumbSchemaScript = document.getElementById('schema-breadcrumb');
+        if (breadcrumbSchemaScript) {
+            const schema = JSON.parse(breadcrumbSchemaScript.textContent);
+            // Update last item (Project Name)
+            if (schema.itemListElement && schema.itemListElement.length >= 3) {
+                schema.itemListElement[2].name = project.title;
+                schema.itemListElement[2].item = window.location.href;
+            }
+            breadcrumbSchemaScript.textContent = JSON.stringify(schema, null, 2);
+        }
+    } catch (e) {
+        console.error('Error updating schema:', e);
+    }
+
+    // Project Navigation
     const prevLink = document.getElementById('prev-project');
     const nextLink = document.getElementById('next-project');
-    const prevTitle = document.getElementById('prev-title');
-    const nextTitle = document.getElementById('next-title');
-
-    if (nav.prev && prevLink && prevTitle) {
-      prevLink.href = `case-study.html?project=${nav.prev.id}`;
-      prevTitle.textContent = nav.prev.title;
+    
+    if (nav.prev) {
+      prevLink.href = `/project.html?slug=${nav.prev.slug}`;
+      document.getElementById('prev-project-title').textContent = nav.prev.title;
       prevLink.style.visibility = 'visible';
     }
-
-    if (nav.next && nextLink && nextTitle) {
-      nextLink.href = `case-study.html?project=${nav.next.id}`;
-      nextTitle.textContent = nav.next.title;
+    
+    if (nav.next) {
+      nextLink.href = `/project.html?slug=${nav.next.slug}`;
+      document.getElementById('next-project-title').textContent = nav.next.title;
       nextLink.style.visibility = 'visible';
     }
   }
 
   // ==========================================================================
-  // 4. HELPER FUNCTIONS
+  // 3. HOMEPAGE PROJECTS GRID RENDERING
   // ==========================================================================
 
   /**
-   * Set text content of an element
-   * @param {string} selector - CSS selector
-   * @param {string} text - Text content
+   * Render featured projects on homepage
+   * @param {Array} projects - Featured projects
    */
-  function setText(selector, text) {
-    const element = document.querySelector(selector);
-    if (element && text) {
-      element.textContent = text;
-    }
-  }
+  function renderHomepageProjects(projects) {
+    const grid = document.getElementById('project-grid');
+    if (!grid) return;
 
-  /**
-   * Set image source and alt
-   * @param {string} selector - CSS selector
-   * @param {string} src - Image source
-   * @param {string} alt - Alt text
-   */
-  function setImage(selector, src, alt) {
-    const element = document.querySelector(selector);
-    if (element && src) {
-      element.src = src;
-      element.alt = alt || '';
+    // Update project count
+    const countEl = document.querySelector('.project-count');
+    if (countEl) {
+      countEl.textContent = `(${String(projects.length).padStart(2, '0')})`;
     }
-  }
 
-  /**
-   * Show error state
-   * @param {HTMLElement} container - Container element
-   * @param {string} message - Error message
-   */
-  function showError(container, message) {
-    container.innerHTML = `
-      <div class="case-error">
-        <h1>Oops!</h1>
-        <p>${message}</p>
-        <a href="index.html#work" class="button-primary">
-          <span class="btn-content">
-            <span class="btn-text">Back to Work</span>
-            <span class="btn-hover-text">Back to Work</span>
-          </span>
+    // Render project cards
+    grid.innerHTML = projects.map((project, index) => {
+      const thumbAttrs = getImageAttrs(project.thumbnail, `${project.title} project preview`);
+      return `
+      <article class="project-card reveal" style="transition-delay: ${index * 100}ms;">
+        <a href="/project.html?slug=${project.slug}" class="project-card-link">
+          <div class="project-image-wrapper">
+            <img
+              src="${thumbAttrs.src}"
+              alt="${project.title} project preview"
+              class="project-image ${thumbAttrs.className}"
+              width="400"
+              height="284"
+              loading="lazy"
+            />
+          </div>
+          <div class="project-info">
+            <div class="project-title-row">
+              <h3 class="project-title">${project.title}</h3>
+              <span class="arrow-content" aria-hidden="true">
+                <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-default" />
+                <img src="Icons/Cards-Arrow.svg" alt="" class="project-arrow arrow-hover" />
+              </span>
+            </div>
+            <p class="project-category">${project.category}</p>
+          </div>
         </a>
-      </div>
-    `;
-    container.classList.remove('loading');
+      </article>
+    `;}).join('');
+
+    // Re-trigger reveal animations for dynamically loaded content
+    setTimeout(() => {
+      const revealElements = grid.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+      revealElements.forEach(el => observer.observe(el));
+    }, 100);
   }
 
   // ==========================================================================
-  // 5. EXPORTS
+  // 4. INITIALIZE
   // ==========================================================================
 
-  // Make functions globally available
-  window.loadProjects = loadProjects;
-  window.renderProjectGrid = renderProjectGrid;
-  window.renderCaseStudy = renderCaseStudy;
-
-  // Auto-init based on page type
-  function autoInit() {
-    // Index page - render project grid
-    if (document.querySelector('.project-grid')) {
-      renderProjectGrid();
+  async function init() {
+    const projects = await loadProjects();
+    if (projects.length === 0) {
+      console.warn('No projects loaded');
+      return;
     }
-    // Case study page - render case study
-    if (document.querySelector('.case-study-main')) {
-      renderCaseStudy();
+
+    // Determine current page type based on presence of specific elements
+    const isProjectHero = document.getElementById('project-hero');
+    const isProjectGrid = document.getElementById('project-grid');
+    
+    // Get slug from path (clean URL) or hash (legacy)
+    // Example path: /corecloud -> corecloud
+    // Example hash: /project.html#corecloud -> corecloud
+    let slug = '';
+    const path = window.location.pathname;
+    
+    if (path !== '/' && path !== '/index.html' && path !== '/project.html') {
+      slug = path.substring(1); // Remove leading slash
+    } else if (window.location.hash) {
+      slug = window.location.hash.replace('#', '');
+    } else {
+      const urlParams = new URLSearchParams(window.location.search);
+      slug = urlParams.get('slug');
+    }
+
+    if (isProjectHero) {
+      // Project detail page
+      if (slug) {
+        const project = findProjectBySlug(projects, slug);
+        if (project) {
+          const nav = getProjectNavigation(projects, slug);
+          renderProjectDetail(project, nav);
+        } else {
+          // If slug found but no project, might be 404 or bad URL
+          // Optional: handle 404 here
+          console.error('Project not found:', slug);
+          document.body.innerHTML = '<div style="padding: 100px; text-align: center;"><h1>Project Not Found</h1><p><a href="/">← Back to Home</a></p></div>';
+        }
+      } else {
+        // Project page but no slug - show first project as fallback/default
+        const firstProject = projects[0];
+        const nav = getProjectNavigation(projects, firstProject.slug);
+        renderProjectDetail(firstProject, nav);
+      }
+    } else if (isProjectGrid) {
+      // Homepage - render featured projects
+      const featuredProjects = getFeaturedProjects(projects, 6);
+      renderHomepageProjects(featuredProjects);
     }
   }
 
   // Run init when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', autoInit);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    autoInit();
+    init();
   }
 
 })();
